@@ -1,0 +1,47 @@
+SET user1:name "Bob Esponja"
+// Cria uma chave-valor
+
+GET user1:name
+// Retorna "Bob Esponja"
+
+SET user '{"name": "Patrick", "age": 31}
+// Criando baseado em JSON
+// Em Redis podemos criar a chave-valor com qualquer dado que quisermos
+
+SET user2:name "Lula Molusco" EX 10
+// Define que um dado expira em 10 segundos
+// Muito utilizado para cache
+
+EXISTS user2:name
+// Retorna 0
+EXISTS user1:name
+// Retorna 1
+
+LPUSH user1:hobbies "Caçar agua viva"
+LPUSH user1:hobbies "Comer hamburguer"
+// Adiciona esses dados a uma tabela
+// Não é possível acessar uma tabela com o GET
+
+LINDEX user1:hobbies 0
+// Retorna: "Comer hamburguer"
+LINDEX user1:hobbies 1
+// Retorna "Caçar agua viva"
+
+LRANGE user1:hobbies 0 1
+// Retorna os indices de 0 a 1
+
+TYPE user1:name
+// Retorna string
+TYPE user1:hobbies
+// Retorna list
+
+TTL user1:name
+// Retorna o tempo de expiração do objeto em segundos
+pTTL user1:name
+// Retorna o tempo de expiração do objeto em milisegundos
+
+PERSIST user2:name
+// Remove o tempo de expiração
+
+DEL user2:name
+// Deleta uma informação

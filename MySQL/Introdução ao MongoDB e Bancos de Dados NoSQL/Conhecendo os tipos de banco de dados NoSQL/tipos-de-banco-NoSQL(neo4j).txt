@@ -1,0 +1,31 @@
+CREATE (:Client {name: "Bob Esponja", age: 28, hobbies: ['Caçar água-viva', 'Comer hamburguer']});
+
+MATCH (bob_esponja) RETURN bob_esponja;
+// Mostra as informações criadas
+
+
+CREATE (:Client {name: "Lula Molusco", age: 30, hobbies: ['Tocar clarinete']}) - [:Bloqueado]-> (:Client {name: "Patrick", hobbies: ['Caçar água-viva]});
+// Criou relacionamento, não é obrigatório informar todos os dados do Client (EX: Patrick age)
+
+MATCH (todos) RETURN todos;
+
+CREATE (:Object)
+
+MATCH (todos) RETURN todos;
+
+MATCH (bob: Client {name: "Lula Molusco"}), (patrick: Client {name: "Patrick"}) CREATE (bob)-[:Amigo]->(patrick)
+// Criou um relacionamento "Amigo" entre bob_esponja e patrick
+
+MATCH (lula: Client {name: "Lula Molusco"})-[relaciona:Bloqueado]-() DELETE relaciona
+// Deleta o relacionamento, poderiamos usar:
+// [relaciona:Bloqueado]-(patrick) DELETE relaciona
+
+
+MATCH (lula:Client {name: "Lula Molusco"}) DELETE lula;
+// Deleta um nó
+
+MATCH (patrick:Client {name: "Patrick"}) SET patrick.age = 28;
+// Atualiza um dado
+
+MATCH(patrick:Client {name: "Patrick"}) SET patrick:Client_Premium
+// Adiciona uma nova LABEL ao nó

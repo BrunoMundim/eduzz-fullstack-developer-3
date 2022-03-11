@@ -1,0 +1,36 @@
+CREATE KEYSPACE fenda_biquini WITH replication = 
+{'class': 'SimpleStrategy', 'replication_factor': 1}
+// Cria a tabela
+
+CREATE COLUMNFAMILY clients (name TEXT PRIMARY KEY, age int);
+// Cria uma coluna
+
+SELECT * FROM clients;
+// Mostra todos as informações dos clients
+
+INSERT INTO clients (name, age) VALUES ('Bob Esponja', 38);
+// Insere os dados na tabela
+
+INSERT INTO clients JSON '{"name": "Patrick"}';
+// age == null
+// No Cassandra null torna aquele item inexistente na coluna
+
+SELECT age, WRITETIME(age) FROM clients;
+// Mostra a age e o horário que foi escrito
+
+SELECT * FROM clients WHERE name = 'Bob Esponja';
+// Retorna em formato de tabela
+
+SELECT JSON * FROM clients
+// Retorna em formato JSON
+
+UPDATE clients SET age = 30 WHERE name='Patrick';
+// Atualiza o dado age na para o Patrick
+
+ALTER COLUMNFAMILY clients ADD hobby text;
+// Cria uma nova coluna hobby
+
+UPDATE clients SET hobby = 'Caçar água-viva' WHERE name = "Patrick";
+
+DELETE FROM clients WHERE name="Bob Esponja";
+// Deleta uma linha
